@@ -21,7 +21,7 @@ export default class FavouritesScreen extends React.Component {
   render() {
     return (
       <View style={[styles.container]}>
-        <Text style={styles.text}>Favourites Screen</Text>
+        <Text style={styles.text}>Favourites screen</Text>
       </View>
     );
   }
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
     marginLeft: 15
   }
 });

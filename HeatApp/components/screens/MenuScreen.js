@@ -21,7 +21,7 @@ export default class MenuScreen extends React.Component {
   render() {
     return (
       <View style={[styles.container]}>
-        <Text style={styles.text}>Menu Screen</Text>
+        <Text style={styles.text}>Menu screen</Text>
       </View>
     );
   }
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 15
+    textAlign: 'center',
   }
 });

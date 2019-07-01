@@ -21,7 +21,7 @@ export default class UserSettingsScreen extends React.Component {
   render() {
     return (
       <View style={[styles.container]}>
-        <Text style={styles.text}>Favourites Screen</Text>
+        <Text style={styles.text}>User settings screen</Text>
       </View>
     );
   }
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 15
+    textAlign: 'center'
   }
 });
