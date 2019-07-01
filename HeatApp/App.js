@@ -15,8 +15,9 @@ const MainTabs = createBottomTabNavigator(
     Settings: UserSettingsScreen
   },
   {
+    initialRouteName : 'Menu',
     tabBarOptions: {
-      activeTintColor: "#248c09"
+      activeTintColor: "#308312"
     }
   }
 );
