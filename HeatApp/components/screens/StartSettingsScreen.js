@@ -2,7 +2,7 @@ import React from "react";
 import {
   Text, StyleSheet, Dimensions, TouchableOpacity
 } from "react-native";
-import colors from './config/colors';
+import colors from './../../config/colors';
 
 const {width: WIDTH} = Dimensions.get('window');
 
