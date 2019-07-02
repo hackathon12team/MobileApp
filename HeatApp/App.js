@@ -2,6 +2,7 @@ import React from 'react';
 import {
   createAppContainer, createBottomTabNavigator, createSwitchNavigator
 } from "react-navigation";
+import colors from './config/colors';
 
 import FavouritesScreen from './components/screens/FavouritesScreen';
 import MenuScreen from './components/screens/MenuScreen';
@@ -17,7 +18,7 @@ const MainTabs = createBottomTabNavigator(
   {
     initialRouteName : 'Menu',
     tabBarOptions: {
-      activeTintColor: "#308312"
+      activeTintColor: colors.primaryColor
     }
   }
 );
