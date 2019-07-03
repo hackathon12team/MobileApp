@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-
+import colors from '../../config/colors';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default class FavouritesScreen extends React.Component {
@@ -30,7 +30,8 @@ export default class FavouritesScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.screenBackgroundColor
   },
   text: {
     fontSize: 20,
