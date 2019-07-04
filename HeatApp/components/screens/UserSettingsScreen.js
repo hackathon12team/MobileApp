@@ -17,6 +17,48 @@ export default class UserSettingsScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
+
+  getStateClone() {
+    var stateClone = {};
+    Object.keys(this.state).forEach(key => {
+      stateClone[key] = this.state[key];
+    });
+    return stateClone;
+  }
+
+  updateState(field, value) {
+    var newState = this.getStateClone();
+    newState[field] = value;
+    this.setState(newState);
+  }
+
+  updateUsername(text) {
+    this.updateState('username', text);
+  }
+
+  updatePassword(text) {
+    this.updateState('password', text);
+  }
+
+  updateWeight(text) {
+    this.updateState('weight', parseFloat(text));
+  }
+
+  updateHeight(text) {
+    this.updateState('height', parseFloat(text));
+  }
+
+  updatePhysicalActivity(text) {
+    this.updateState('physicalActivity', text);
+  }
+
+  updateTargetWeight(text) {
+    this.updateState('targetWeight', parseFloat(text));
   }
 
   render() {
@@ -24,13 +66,37 @@ export default class UserSettingsScreen extends React.Component {
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={[styles.container]}>
-          <SettingsTextInput hintText="Username" placeholder="Not set"/>
-          <SettingsTextInput hintText="Password" placeholder="Password" secureTextEntry={true}/>
+          <SettingsTextInput hintText="Username"
+                             placeholder="Not set"
+                             text={this.state.username}
+                             textUpdate={this.updateUsername.bind(this)}/>
+          <SettingsTextInput hintText="Password"
+                             placeholder="Password"
+                             secureTextEntry={true}
+                             text={this.state.password}
+                             textUpdate={this.updatePassword.bind(this)}/>
+
           <View style={styles.separator}></View>
-          <SettingsTextInput hintText="Weight" placeholder="Current weight, kg" keyboardType="decimal-pad"/>
-          <SettingsTextInput hintText="Height" placeholder="Current height, cm" keyboardType="decimal-pad"/>
-          <SettingsTextInput hintText="Physical activity" placeholder="Physical activity"/>
-          <SettingsTextInput hintText="Target weight" placeholder="Target weight, kg" keyboardType="decimal-pad"/>
+
+          <SettingsTextInput hintText="Weight"
+                             placeholder="Current weight, kg"
+                             keyboardType="decimal-pad"
+                             text={this.state.weight}
+                             textUpdate={this.updateWeight.bind(this)}/>
+          <SettingsTextInput hintText="Height"
+                             placeholder="Current height, cm"
+                             keyboardType="decimal-pad"
+                             text={this.state.height}
+                             textUpdate={this.updateHeight.bind(this)}/>
+          <SettingsTextInput hintText="Physical activity"
+                             placeholder="Physical activity"
+                             text={this.state.physicalActivity}
+                             textUpdate={this.updatePhysicalActivity.bind(this)}/>
+          <SettingsTextInput hintText="Target weight"
+                             placeholder="Target weight, kg"
+                             keyboardType="decimal-pad"
+                             text={this.state.targetWeight}
+                             textUpdate={this.updateTargetWeight.bind(this)}/>
         </View>
       </ScrollView>
     );
