@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollView, View, StyleSheet, Text, TextInput, PickerIOS, DatePickerIOS } from "react-native";
 import colors from '../../config/colors';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import SettingsTextInput from '../common/SettingsTextInput';
 
 export default class UserSettingsScreen extends React.Component {
   static navigationOptions = {
@@ -19,34 +20,17 @@ export default class UserSettingsScreen extends React.Component {
   }
 
   render() {
+  /* add pickers for gender and birthdate, extract inputs to a separate component with input state/props */
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={[styles.container]}>
-          <View style={styles.inputWrap}>
-            <Text style={styles.textHint}>Username</Text>
-            <TextInput style={styles.textInput} placeholder="Not set"></TextInput>
-          </View>
-          <View style={styles.inputWrap}>
-            <Text style={styles.textHint}>Password</Text>
-            <TextInput style={styles.textInput} secureTextEntry={true} placeholder="Password"></TextInput>
-          </View>
+          <SettingsTextInput hintText="Username" placeholder="Not set"/>
+          <SettingsTextInput hintText="Password" placeholder="Password" secureTextEntry={true}/>
           <View style={styles.separator}></View>
-          <View style={styles.inputWrap}>
-            <Text style={styles.textHint}>Weight</Text>
-            <TextInput style={styles.textInput} keyboardType="decimal-pad" placeholder="Current weight, kg"></TextInput>
-          </View>
-          <View style={styles.inputWrap}>
-            <Text style={styles.textHint}>Height</Text>
-            <TextInput style={styles.textInput} keyboardType="decimal-pad" placeholder="Current height, cm"></TextInput>
-          </View>
-          <View style={styles.inputWrap}>
-            <Text style={styles.textHint}>Physical activity</Text>
-            <TextInput style={styles.textInput} placeholder="Physical activity"></TextInput>
-          </View>
-          <View style={styles.inputWrap}>
-            <Text style={styles.textHint}>Target weight</Text>
-            <TextInput style={styles.textInput} keyboardType="decimal-pad" placeholder="Target weight, kg"></TextInput>
-          </View>
+          <SettingsTextInput hintText="Weight" placeholder="Current weight, kg" keyboardType="decimal-pad"/>
+          <SettingsTextInput hintText="Height" placeholder="Current height, cm" keyboardType="decimal-pad"/>
+          <SettingsTextInput hintText="Physical activity" placeholder="Physical activity"/>
+          <SettingsTextInput hintText="Target weight" placeholder="Target weight, kg" keyboardType="decimal-pad"/>
         </View>
       </ScrollView>
     );
@@ -63,30 +47,8 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     justifyContent: "flex-start"
   },
-  inputWrap: {
-    flexDirection: 'row'
-  },
   separator: {
     marginTop: 30,
     marginBottom: 30
   },
-  textHint: {
-    backgroundColor: colors.white,
-    paddingTop: 7,
-    paddingLeft: 10,
-    marginBottom: 1,
-    height: 40,
-    fontSize: 20,
-    textAlign: 'left'
-  },
-  textInput: {
-    flex: 1,
-    backgroundColor: colors.white,
-    color: colors.textColorGray,
-    paddingRight: 10,
-    marginBottom: 1,
-    fontSize: 20,
-    height: 40,
-    textAlign: 'right',
-  }
 });
