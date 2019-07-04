@@ -1,7 +1,6 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, Text, TextInput, PickerIOS, DatePickerIOS } from "react-native";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 import colors from '../../config/colors';
-import Ionicons from "react-native-vector-icons/Ionicons";
 
 
 export default class SettingsTextInput extends React.Component {
