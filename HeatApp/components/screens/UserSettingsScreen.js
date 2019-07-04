@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, Text, TextInput, PickerIOS, DatePickerIOS } from "react-native";
+import { ScrollView, View, StyleSheet, Text, TextInput, PickerIOS, DatePickerIOS, TouchableOpacity } from "react-native";
 import colors from '../../config/colors';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import SettingsTextInput from '../common/SettingsTextInput';
@@ -15,11 +15,16 @@ export default class UserSettingsScreen extends React.Component {
     )
   };
 
+  genderMatch = {
+    1: 'Male',
+    2: 'Female',
+    3: 'Other'
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      gender: 3,
     };
   }
 
@@ -61,8 +66,16 @@ export default class UserSettingsScreen extends React.Component {
     this.updateState('targetWeight', parseFloat(text));
   }
 
+  updateGender(value) {
+    this.updateState('gender', value);
+  }
+
+  genderSelection() {
+    this.updateState('showGenderSelection', !this.state.showGenderSelection);
+  }
+
   render() {
-  /* add pickers for gender and birthdate, extract inputs to a separate component with input state/props */
+  /* add picker birthdate */
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={[styles.container]}>
@@ -77,6 +90,26 @@ export default class UserSettingsScreen extends React.Component {
                              textUpdate={this.updatePassword.bind(this)}/>
 
           <View style={styles.separator}></View>
+
+          <TouchableOpacity onPress={this.genderSelection.bind(this)}>
+            <View style={styles.inputWrap}>
+              <View style={styles.hintTextWrapper}>
+                <Text style={styles.textHint}>Gender</Text>
+                <Text style={styles.textValue}>
+                  {this.genderMatch[this.state.gender]}
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {!!this.state.showGenderSelection &&
+            <PickerIOS selectedValue={this.state.gender}
+                       onValueChange={(newValue) => this.updateGender(newValue)}>
+              <PickerIOS.Item value={1} label='Male'/>
+              <PickerIOS.Item value={2} label='Female'/>
+              <PickerIOS.Item value={3} label='Other'/>
+            </PickerIOS>
+          }
 
           <SettingsTextInput hintText="Weight"
                              placeholder="Current weight, kg"
@@ -117,4 +150,32 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30
   },
+
+
+
+  inputWrap: {
+    flexDirection: 'row',
+  },
+  hintTextWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 1,
+    height: 40
+  },
+  textHint: {
+    flex: 1,
+    paddingLeft: 10,
+    fontSize: 20,
+    textAlign: 'left'
+  },
+  textValue: {
+    flex: 1,
+    color: colors.textColorGray,
+    paddingRight: 10,
+    fontSize: 20,
+    textAlign: 'right',
+  }
 });
