@@ -70,12 +70,27 @@ export default class UserSettingsScreen extends React.Component {
     this.updateState('gender', value);
   }
 
+  updateBirthdate(value) {
+    this.updateState('birthdate', value);
+  }
+
   genderSelection() {
     this.updateState('showGenderSelection', !this.state.showGenderSelection);
   }
 
+  birthdateSelection() {
+    if (!this.state.showBirthdateSelection && !this.state.birthdate) {
+      var newState = this.getStateClone();
+      newState['showBirthdateSelection'] = true;
+      newState['birthdate'] = new Date();
+      this.setState(newState);
+    } else {
+      this.updateState('showBirthdateSelection', !this.state.showBirthdateSelection);
+    }
+  }
+
   render() {
-  /* add picker birthdate */
+    // TODO: No way to close the keyboard for any input except pickers.
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={[styles.container]}>
@@ -109,6 +124,23 @@ export default class UserSettingsScreen extends React.Component {
               <PickerIOS.Item value={2} label='Female'/>
               <PickerIOS.Item value={3} label='Other'/>
             </PickerIOS>
+          }
+
+          <TouchableOpacity onPress={this.birthdateSelection.bind(this)}>
+            <View style={styles.inputWrap}>
+              <View style={styles.hintTextWrapper}>
+                <Text style={styles.textHint}>Birthdate</Text>
+                <Text style={styles.textValue}>
+                  {this.state.birthdate ? this.state.birthdate.toDateString() : 'Not set'}
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {!!this.state.showBirthdateSelection &&
+            <DatePickerIOS date={this.state.birthdate}
+                           mode='date'
+                           onDateChange={this.updateBirthdate.bind(this)}/>
           }
 
           <SettingsTextInput hintText="Weight"
