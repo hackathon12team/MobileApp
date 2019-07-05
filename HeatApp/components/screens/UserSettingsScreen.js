@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, View, StyleSheet, Text, TextInput, PickerIOS, DatePickerIOS, TouchableOpacity } from "react-native";
+import {Divider} from 'react-native-elements';
 import colors from '../../config/colors';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import SettingsTextInput from '../common/SettingsTextInput';
@@ -104,7 +105,7 @@ export default class UserSettingsScreen extends React.Component {
                              text={this.state.password}
                              textUpdate={this.updatePassword.bind(this)}/>
 
-          <View style={styles.separator}></View>
+          <Divider style={styles.divider}/>
 
           <TouchableOpacity onPress={this.genderSelection.bind(this)}>
             <View style={styles.inputWrap}>
@@ -178,9 +179,9 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     justifyContent: "flex-start"
   },
-  separator: {
-    marginTop: 30,
-    marginBottom: 30
+  divider: {
+    height: 30,
+    backgroundColor: colors.screenBackgroundColor
   },
 
 
