@@ -7,10 +7,11 @@ import { ApiService } from './../../models/ApiService';
 
 const {width: WIDTH} = Dimensions.get('window');
 
-export default class LoginScreen extends React.Component {
+export default class StartSettingsScreen extends React.Component {
   _start = () => {
     this.props.navigation.navigate("Main");
   };
+
   constructor() {
     super();
     this.apiService = new ApiService();
