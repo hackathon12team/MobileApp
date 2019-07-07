@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, Text, TextInput, PickerIOS, DatePickerIOS, TouchableOpacity } from "react-native";
+import { ScrollView, View, StyleSheet, Text, TextInput, PickerIOS, DatePickerIOS, TouchableOpacity, Platform } from "react-native";
 import {Divider} from 'react-native-elements';
 import colors from '../../config/colors';
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -118,13 +118,16 @@ export default class UserSettingsScreen extends React.Component {
             </View>
           </TouchableOpacity>
 
-          {!!this.state.showGenderSelection &&
+          {!!this.state.showGenderSelection && Platform.OS === 'ios' &&
             <PickerIOS selectedValue={this.state.gender}
                        onValueChange={this.updateGender}>
               <PickerIOS.Item value={1} label='Male'/>
               <PickerIOS.Item value={2} label='Female'/>
               <PickerIOS.Item value={3} label='Other'/>
             </PickerIOS>
+          }
+          {!!this.state.showGenderSelection && Platform.OS === 'android' &&
+            <Text>PickerIOS doesn't work for Android</Text>
           }
 
           <TouchableOpacity onPress={this.birthdateSelection}>
@@ -138,10 +141,13 @@ export default class UserSettingsScreen extends React.Component {
             </View>
           </TouchableOpacity>
 
-          {!!this.state.showBirthdateSelection &&
+          {!!this.state.showBirthdateSelection && Platform.OS === 'ios' &&
             <DatePickerIOS date={this.state.birthdate}
                            mode='date'
                            onDateChange={this.updateBirthdate}/>
+          }
+          {!!this.state.showBirthdateSelection && Platform.OS === 'android' &&
+            <Text>DatePickerIOS doesn't work for Android</Text>
           }
 
           <SettingsTextInput hintText="Weight"
