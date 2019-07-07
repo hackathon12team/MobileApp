@@ -1,11 +1,10 @@
 import React from "react";
 import {
-  Text, StyleSheet, Dimensions, TouchableOpacity, View
+  Text, StyleSheet, TouchableOpacity, View
 } from "react-native";
-import colors from './../../config/colors';
+import colors from '../../config/colors';
+import dimensions from '../../config/dimensions';
 import { ApiService } from './../../models/ApiService';
-
-const {width: WIDTH} = Dimensions.get('window');
 
 export default class StartSettingsScreen extends React.Component {
   _start = () => {
@@ -33,7 +32,7 @@ export default class StartSettingsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   startBtn: {
-    width: WIDTH - 55,
+    width: dimensions.WINDOW_WIDTH - 55,
     height: 45,
     borderRadius: 25,
     backgroundColor: colors.btnBackgroundColor,
