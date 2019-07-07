@@ -22,6 +22,11 @@ export default class SettingsTextInput extends React.Component {
                    onChangeText={(text) => this.props.textUpdate(text)}>
           {this.props.text || ''}
         </TextInput>
+        {!!this.props.suffixText && 
+          <View style={styles.hintTextWrapper}>
+            <Text style={styles.inputSuffix}>{this.props.suffixText}</Text>
+          </View>
+        }
       </View>
       );
   }
@@ -30,16 +35,15 @@ export default class SettingsTextInput extends React.Component {
 
 const styles = StyleSheet.create({
   inputWrap: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 1
   },
   hintTextWrapper: {
     backgroundColor: colors.white,
     justifyContent: 'center',
-    marginBottom: 1,
     height: 40
   },
   textHint: {
-    backgroundColor: colors.white,
     paddingLeft: 10,
     fontSize: 20,
     textAlign: 'left'
@@ -49,9 +53,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     color: colors.textColorGray,
     paddingRight: 10,
-    marginBottom: 1,
     fontSize: 20,
     height: 40,
     textAlign: 'right',
-  }
+  },
+  inputSuffix: {
+    color: colors.textColorGray,
+    paddingRight: 10,
+    fontSize: 20
+  },
 });

@@ -91,7 +91,7 @@ export default class UserSettingsScreen extends React.Component {
   }
 
   render() {
-    // TODO: No way to close the keyboard for any input except pickers.
+    // TODO: Add animation for pickers.
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={[styles.container]}>
@@ -145,23 +145,26 @@ export default class UserSettingsScreen extends React.Component {
           }
 
           <SettingsTextInput hintText="Weight"
-                             placeholder="Current weight, kg"
+                             placeholder="Current weight"
                              keyboardType="decimal-pad"
                              text={this.state.weight}
+                             suffixText={this.state.weight ? 'kg' : undefined}
                              textUpdate={this.updateWeight.bind(this)}/>
           <SettingsTextInput hintText="Height"
-                             placeholder="Current height, cm"
+                             placeholder="Current height"
                              keyboardType="decimal-pad"
                              text={this.state.height}
+                             suffixText={this.state.height ? 'cm' : undefined}
                              textUpdate={this.updateHeight.bind(this)}/>
           <SettingsTextInput hintText="Physical activity"
                              placeholder="Physical activity"
                              text={this.state.physicalActivity}
                              textUpdate={this.updatePhysicalActivity.bind(this)}/>
           <SettingsTextInput hintText="Target weight"
-                             placeholder="Target weight, kg"
+                             placeholder="Target weight"
                              keyboardType="decimal-pad"
                              text={this.state.targetWeight}
+                             suffixText={this.state.targetWeight ? 'kg' : undefined}
                              textUpdate={this.updateTargetWeight.bind(this)}/>
         </View>
       </ScrollView>
