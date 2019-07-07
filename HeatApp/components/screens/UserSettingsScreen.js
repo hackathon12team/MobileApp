@@ -43,43 +43,43 @@ export default class UserSettingsScreen extends React.Component {
     this.setState(newState);
   }
 
-  updateUsername(text) {
+  updateUsername = (text) => {
     this.updateState('username', text);
-  }
+  };
 
-  updatePassword(text) {
+  updatePassword = (text) => {
     this.updateState('password', text);
-  }
+  };
 
-  updateWeight(text) {
+  updateWeight = (text) => {
     this.updateState('weight', parseFloat(text));
-  }
+  };
 
-  updateHeight(text) {
+  updateHeight = (text) => {
     this.updateState('height', parseFloat(text));
-  }
+  };
 
-  updatePhysicalActivity(text) {
+  updatePhysicalActivity = (text) => {
     this.updateState('physicalActivity', text);
-  }
+  };
 
-  updateTargetWeight(text) {
+  updateTargetWeight = (text) => {
     this.updateState('targetWeight', parseFloat(text));
-  }
+  };
 
-  updateGender(value) {
+  updateGender = (value) => {
     this.updateState('gender', value);
-  }
+  };
 
-  updateBirthdate(value) {
+  updateBirthdate = (value) => {
     this.updateState('birthdate', value);
-  }
+  };
 
-  genderSelection() {
+  genderSelection = () => {
     this.updateState('showGenderSelection', !this.state.showGenderSelection);
-  }
+  };
 
-  birthdateSelection() {
+  birthdateSelection = () => {
     if (!this.state.showBirthdateSelection && !this.state.birthdate) {
       const newState = this.getStateClone();
       newState['showBirthdateSelection'] = true;
@@ -88,7 +88,7 @@ export default class UserSettingsScreen extends React.Component {
     } else {
       this.updateState('showBirthdateSelection', !this.state.showBirthdateSelection);
     }
-  }
+  };
 
   render() {
     // TODO: Add animation for pickers.
@@ -98,16 +98,16 @@ export default class UserSettingsScreen extends React.Component {
           <SettingsTextInput hintText="Username"
                              placeholder="Not set"
                              text={this.state.username}
-                             textUpdate={this.updateUsername.bind(this)}/>
+                             textUpdate={this.updateUsername}/>
           <SettingsTextInput hintText="Password"
                              placeholder="Password"
                              secureTextEntry={true}
                              text={this.state.password}
-                             textUpdate={this.updatePassword.bind(this)}/>
+                             textUpdate={this.updatePassword}/>
 
           <Divider style={styles.divider}/>
 
-          <TouchableOpacity onPress={this.genderSelection.bind(this)}>
+          <TouchableOpacity onPress={this.genderSelection}>
             <View style={styles.inputWrap}>
               <View style={styles.hintTextWrapper}>
                 <Text style={styles.textHint}>Gender</Text>
@@ -120,14 +120,14 @@ export default class UserSettingsScreen extends React.Component {
 
           {!!this.state.showGenderSelection &&
             <PickerIOS selectedValue={this.state.gender}
-                       onValueChange={(newValue) => this.updateGender(newValue)}>
+                       onValueChange={this.updateGender}>
               <PickerIOS.Item value={1} label='Male'/>
               <PickerIOS.Item value={2} label='Female'/>
               <PickerIOS.Item value={3} label='Other'/>
             </PickerIOS>
           }
 
-          <TouchableOpacity onPress={this.birthdateSelection.bind(this)}>
+          <TouchableOpacity onPress={this.birthdateSelection}>
             <View style={styles.inputWrap}>
               <View style={styles.hintTextWrapper}>
                 <Text style={styles.textHint}>Birthdate</Text>
@@ -141,7 +141,7 @@ export default class UserSettingsScreen extends React.Component {
           {!!this.state.showBirthdateSelection &&
             <DatePickerIOS date={this.state.birthdate}
                            mode='date'
-                           onDateChange={this.updateBirthdate.bind(this)}/>
+                           onDateChange={this.updateBirthdate}/>
           }
 
           <SettingsTextInput hintText="Weight"
@@ -149,23 +149,23 @@ export default class UserSettingsScreen extends React.Component {
                              keyboardType="decimal-pad"
                              text={this.state.weight}
                              suffixText={this.state.weight ? 'kg' : undefined}
-                             textUpdate={this.updateWeight.bind(this)}/>
+                             textUpdate={this.updateWeight}/>
           <SettingsTextInput hintText="Height"
                              placeholder="Current height"
                              keyboardType="decimal-pad"
                              text={this.state.height}
                              suffixText={this.state.height ? 'cm' : undefined}
-                             textUpdate={this.updateHeight.bind(this)}/>
+                             textUpdate={this.updateHeight}/>
           <SettingsTextInput hintText="Physical activity"
                              placeholder="Physical activity"
                              text={this.state.physicalActivity}
-                             textUpdate={this.updatePhysicalActivity.bind(this)}/>
+                             textUpdate={this.updatePhysicalActivity}/>
           <SettingsTextInput hintText="Target weight"
                              placeholder="Target weight"
                              keyboardType="decimal-pad"
                              text={this.state.targetWeight}
                              suffixText={this.state.targetWeight ? 'kg' : undefined}
-                             textUpdate={this.updateTargetWeight.bind(this)}/>
+                             textUpdate={this.updateTargetWeight}/>
         </View>
       </ScrollView>
     );
