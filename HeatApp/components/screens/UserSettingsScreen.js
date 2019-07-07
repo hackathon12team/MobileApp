@@ -30,7 +30,7 @@ export default class UserSettingsScreen extends React.Component {
   }
 
   getStateClone() {
-    var stateClone = {};
+    const stateClone = {};
     Object.keys(this.state).forEach(key => {
       stateClone[key] = this.state[key];
     });
@@ -38,7 +38,7 @@ export default class UserSettingsScreen extends React.Component {
   }
 
   updateState(field, value) {
-    var newState = this.getStateClone();
+    const newState = this.getStateClone();
     newState[field] = value;
     this.setState(newState);
   }
@@ -81,7 +81,7 @@ export default class UserSettingsScreen extends React.Component {
 
   birthdateSelection() {
     if (!this.state.showBirthdateSelection && !this.state.birthdate) {
-      var newState = this.getStateClone();
+      const newState = this.getStateClone();
       newState['showBirthdateSelection'] = true;
       newState['birthdate'] = new Date();
       this.setState(newState);
